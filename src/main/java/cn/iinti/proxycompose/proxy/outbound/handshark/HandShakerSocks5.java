@@ -104,11 +104,11 @@ public class HandShakerSocks5 extends AbstractUpstreamHandShaker {
             case NO_AUTH:
                 doConnectToUpstream();
                 break;
-            case AUTH_GSSAPI:
+            case AUTH_PASSWORD:
                 doAuth();
                 break;
             default:
-                emitFailed("noe support auth method: " + socksAuthScheme, false);
+                emitFailed("no support auth method: " + socksAuthScheme, false);
         }
     }
 

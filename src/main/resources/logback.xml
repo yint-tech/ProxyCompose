@@ -1,32 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
-    <!-- 保存路径-->
-    <springProperty scope="context" name="LOG_DIR" source="LogbackDir"/>
-
 
     <!-- 保存日志天数-->
     <property name="maxHistory" value="3"/>
 
     <property name="errorMaxHistory" value="30"/>
 
+    <!-- 项目名-->
+    <property name="LOG_PROJECT_NAME" value="proxy-compose"/>
+
     <property name="normal-pattern"
               value="[%d [%t] %5p %c{50}:%L]  %m%n"/>
 
-
-    <appender name="metricLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>${LOG_DIR}/${LOG_PROJECT_NAME}/metric/metric.log</File>
-        <encoder>
-            <pattern>${normal-pattern}</pattern>
-        </encoder>
-        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
-            <maxFileSize>100MB</maxFileSize>
-        </triggeringPolicy>
-        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
-            <fileNamePattern>${LOG_DIR}/${LOG_PROJECT_NAME}/metric/metric.%i.log</fileNamePattern>
-            <minIndex>1</minIndex>
-            <maxIndex>5</maxIndex>
-        </rollingPolicy>
-    </appender>
 
     <appender name="serviceLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <File>${LOG_DIR}/${LOG_PROJECT_NAME}/${LOG_PROJECT_NAME}-service.log</File>

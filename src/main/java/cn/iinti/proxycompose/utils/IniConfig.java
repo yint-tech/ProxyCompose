@@ -37,6 +37,7 @@ public abstract class IniConfig {
 
         @SneakyThrows
         private V calcValue(String key, V defaultValue) {
+            key = key.toLowerCase();
             Class<V> superClassGenericType = getSuperClassGenericType(getClass());
             if (config.hasOption(section, key)) {
                 String config = IniConfig.this.config.get(section, key);
@@ -48,7 +49,7 @@ public abstract class IniConfig {
         }
 
         @SuppressWarnings("unchecked")
-        private  <T> Class<T> getSuperClassGenericType(Class<?> clazz) {
+        private <T> Class<T> getSuperClassGenericType(Class<?> clazz) {
             Type genType = clazz.getGenericSuperclass();
             if (!(genType instanceof ParameterizedType)) {
                 return (Class<T>) Object.class;
